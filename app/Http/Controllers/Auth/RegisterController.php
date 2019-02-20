@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Tipo_usuario;
 
 class RegisterController extends Controller
 {
@@ -38,6 +39,12 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+    }
+
+        public function showRegistrationForm()
+    {
+        $tiposDusuarios = Tipo_usuario::all();
+        return view('auth.register',compact('tiposDusuarios'));
     }
 
     /**
